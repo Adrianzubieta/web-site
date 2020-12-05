@@ -4,9 +4,7 @@ import Home from './Home.jsx';
 import 'antd/dist/antd.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Home />
-  </React.StrictMode>,
+  <Home />,
   document.getElementById('root')
 );
 
