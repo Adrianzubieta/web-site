@@ -1,9 +1,7 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
-import { FormOutlined, ExperimentOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
 import injectSheet from 'react-jss';
-
-const { Header } = Layout;
+import Navbar from './components/Navbar';
+import Formation from './components/Formation';
 
 const styles = {
   header: {
@@ -14,31 +12,26 @@ const styles = {
 }
 
 class Home extends React.Component  {
- 
-  handleSelect = ({ key }) => {
-    console.log('key: ', key);
+  constructor(props) {
+    super(props);
+    // No hagas esto!
+    this.state = { 
+      keySelected: '1',
+    };
+   }
+
+  handleSelect = (key) => {
+    this.setState({keySelected: key});
   }
 
   render(){
     const { classes } = this.props
+    const {keySelected} = this.state;;
     return (
-      <Layout>
-        <Header className={classes.header}>
-          <div>
-            Adrian Zubieta
-          </div>
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            onSelect={this.handleSelect}
-          >
-            <Menu.Item key="1" icon={<HomeOutlined />}>Inicio</Menu.Item>
-            <Menu.Item key="2" icon={<UserOutlined />}>Sobre Mi</Menu.Item>
-            <Menu.Item key="3" icon={<ExperimentOutlined />}>Formacion</Menu.Item>
-            <Menu.Item key="4" icon={<FormOutlined />}>Contacto</Menu.Item>
-          </Menu>
-        </Header>
-      </Layout>
+      <React.Fragment>
+        <Navbar handleSelect={this.handleSelect}/>
+        <Formation />
+      </React.Fragment>
     );
   } 
 }
